@@ -1,5 +1,4 @@
-export const ErrorCodeEnum={
-   xport const ErrorCodeEnum = {
+export const ErrorCodeEnum = {
   ACCESS_UNAUTHORIZED: "ACCESS_UNAUTHORIZED",
 
   AUTH_USER_NOT_FOUND: "AUTH_USER_NOT_FOUND",
@@ -18,5 +17,4 @@ export const ErrorCodeEnum={
 
   // System Errors
   INTERNAL_SERVER_ERROR: "INTERNAL_SERVER_ERROR",
-
-}
+};

@@ -3,6 +3,9 @@ import dotenv from "dotenv"
 import mongoose from "mongoose"
 import cors from "cors"
 import { HTTPSTATUS } from "./config/http.config.js"
+import { errorHandler } from "./midlewares/errorHandler.middleware.js"
+import { BadRequestException } from "./utils/app-error.js"
+import { asyncHandler } from "./utils/asyncHandler.js"
 dotenv.config()
 
 const app= express()
@@ -15,12 +18,18 @@ app.use(
     })
 )
 
-app.get("/test",(req,res)=>{
-    res.status(HTTPSTATUS.OK).send("app is working")
-})
 
-app.use(ErrorHandler)
+app.get(
+  "/",
+  asyncHandler(async (req, res, next) => {
+    throw new BadRequestException("This is a test error");
+    res.status(HTTPSTATUS.OK).json({
+      message: "Hello Subcribe to the channel",
+    });
+  })
+);
 
+app.use(errorHandler)
 
 
 app.listen(process.env.PORT||5000,()=>{
